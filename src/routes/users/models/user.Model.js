@@ -1,8 +1,8 @@
 const { DataTypes } = require("sequelize");
-const sequelize = require("../../config/db");
+const sequelize = require("../../../config/db");
 
-exports.Project = sequelize.define(
-  "projects",
+ const User = sequelize.define(
+  "user",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -12,14 +12,15 @@ exports.Project = sequelize.define(
     name: {
       type: DataTypes.STRING,
     },
-    priority: {
+    email: {
       type: DataTypes.INTEGER,
     },
-    description: {
-      type: DataTypes.STRING,
+    mobile: {
+      type: DataTypes.INTEGER,
     },
   },
   {
     timestamps: false,
   }
 );
+module.exports=User

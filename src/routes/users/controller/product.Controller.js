@@ -1,18 +1,18 @@
 const { where } = require("sequelize");
-const Project = require("./model");
+const Project = require("../models/product.Model");
 
 exports.createProject = async function createProject(req, res) {
-  const { name, priority, description, deliveryDate } = req.body;
+  const { id,name, type, description } = req.body;
+  console.log(req.body);
   try {
     let newproject = await Project.create(
-      {
+      {id,
         name,
-        priority,
+        type,
         description,
-        deliveryDate: new Date(deliveryDate).getTime(),
       },
       {
-        field: ["name", "priority", "description", "deliverydate"],
+        field: ["id","name", "type", "description"],
       }
     );
     return res.json(newproject);
@@ -26,8 +26,9 @@ exports.createProject = async function createProject(req, res) {
 
 exports.getProject = async (req, res) => {
   try {
+    console.log(req.body);
     const projects = await Project.findAll({
-      attributes: ["id", "name", "priority", "description"],
+      attributes: ["id", "name", "type", "description"],
     });
     res.json(projects);
   } catch (erro) {
